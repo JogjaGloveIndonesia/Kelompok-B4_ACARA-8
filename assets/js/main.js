@@ -210,6 +210,23 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  const orgWrap = document.getElementById('org-scroll');
+const orgTree = orgWrap ? orgWrap.querySelector('.tree') : null;
+
+function fitOrgTree() {
+  if (!orgTree) return;
+  orgTree.style.transform = 'none';
+  orgWrap.style.height = 'auto';
+  const treeW = orgTree.scrollWidth, treeH = orgTree.offsetHeight;
+  const wrapW = orgWrap.clientWidth;
+  const scale = Math.min(1, wrapW / treeW);
+  orgTree.style.margin = '0';
+  orgTree.style.transform = 'scale(' + scale + ')';
+  orgTree.style.marginLeft = Math.max(0, (wrapW - treeW * scale) / 2) + 'px';
+  orgWrap.style.height = (treeH * scale) + 'px';
+}
+window.addEventListener('load', fitOrgTree);
+window.addEventListener('resize', fitOrgTree);
 })();
 
   /**
