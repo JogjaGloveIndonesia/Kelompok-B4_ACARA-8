@@ -2220,3 +2220,16 @@ section,
   display: block;
   cursor: pointer;
 }
+
+/* ===== Logo footer diperbesar ===== */
+.footer .footer-about .logo img {
+  max-height: 80px !important;
+  height: 80px;
+  width: auto;
+}
+@media (max-width: 575px) {
+  .footer .footer-about .logo img {
+    max-height: 64px !important;
+    height: 64px;
+  }
+}
