@@ -6,15 +6,18 @@
   var tree = wrap && wrap.querySelector(".tree");
   if (!wrap || !tree) return;
 
-  /* pembungkus yang ukurannya mengikuti ukuran bagan setelah diperkecil */
+  /* zoom mengubah ukuran sebenarnya (area geser ikut mengecil); dipakai bila browser mendukung */
+  var PAKAI_ZOOM = window.CSS && CSS.supports && CSS.supports("zoom", "0.5");
+
+  /* cadangan: pembungkus yang ukurannya mengikuti bagan setelah diperkecil */
   var sizer = document.createElement("div");
   sizer.style.margin = "0 auto";
   tree.parentNode.insertBefore(sizer, tree);
   sizer.appendChild(tree);
 
   function fit() {
+    tree.style.zoom = "";
     tree.style.transform = "none";
-    tree.style.marginLeft = "";
     sizer.style.width = "auto";
     sizer.style.height = "auto";
     sizer.style.overflow = "visible";
@@ -27,11 +30,15 @@
     if (s >= 1) return;
     if (s < MIN) s = MIN;
 
-    tree.style.transformOrigin = "top left";
-    tree.style.transform = "scale(" + s + ")";
-    sizer.style.width = Math.ceil(lebarBagan * s) + "px";
-    sizer.style.height = Math.ceil(tree.offsetHeight * s) + 10 + "px";
-    sizer.style.overflow = "hidden";
+    if (PAKAI_ZOOM) {
+      tree.style.zoom = s;
+    } else {
+      tree.style.transformOrigin = "top left";
+      tree.style.transform = "scale(" + s + ")";
+      sizer.style.width = Math.ceil(lebarBagan * s) + "px";
+      sizer.style.height = Math.ceil(tree.offsetHeight * s) + 10 + "px";
+      sizer.style.overflow = "hidden";
+    }
     wrap.style.overflowX = lebarBagan * s <= lebarWadah ? "hidden" : "auto";
   }
 
