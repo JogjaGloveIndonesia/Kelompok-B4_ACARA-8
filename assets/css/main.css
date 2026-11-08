@@ -2250,3 +2250,11 @@ section,
     font-size: 14px;
   }
 }
+
+/* ===== Struktur organisasi: beri ruang di bawah agar tidak terpotong ===== */
+.struktur .org-scroll {
+  padding-bottom: 24px;
+}
+.struktur .tree {
+  padding-bottom: 10px;
+}
