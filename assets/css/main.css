@@ -2234,20 +2234,19 @@ section,
   }
 }
 
-/* ===== Tombol filter produk: boleh turun baris di HP ===== */
-.produk .produk-filters {
-  flex-wrap: wrap;
-  padding: 0 12px;
-}
-.produk .produk-filters li {
-  white-space: nowrap;
-}
+/* ===== Tombol filter produk di HP: 2 kolom ===== */
 @media (max-width: 575px) {
   .produk .produk-filters {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
+    padding: 0 12px;
+    margin: 0 0 20px;
   }
   .produk .produk-filters li {
-    padding: 6px 16px;
+    text-align: center;
+    white-space: nowrap;
+    padding: 8px 6px;
     font-size: 14px;
   }
 }
