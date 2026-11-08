@@ -2233,3 +2233,21 @@ section,
     height: 64px;
   }
 }
+
+/* ===== Tombol filter produk: boleh turun baris di HP ===== */
+.produk .produk-filters {
+  flex-wrap: wrap;
+  padding: 0 12px;
+}
+.produk .produk-filters li {
+  white-space: nowrap;
+}
+@media (max-width: 575px) {
+  .produk .produk-filters {
+    gap: 8px;
+  }
+  .produk .produk-filters li {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+}
